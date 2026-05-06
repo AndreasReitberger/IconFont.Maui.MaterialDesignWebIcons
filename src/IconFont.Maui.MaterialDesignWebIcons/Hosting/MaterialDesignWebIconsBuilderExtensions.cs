@@ -7,7 +7,7 @@ public static partial class IconFontBuilderExtensions
     /// <summary>
     /// Registers all Material Design Icons font styles (Outlined, Round, Sharp, TwoTone).
     /// </summary>
-    public static MauiAppBuilder UseMaterialDesignWebIcons(this MauiAppBuilder builder)
+    public static MauiAppBuilder UseMaterialDesignWebIconsFont(this MauiAppBuilder builder)
     {
         builder.ConfigureFonts(fonts =>
         {
@@ -22,7 +22,7 @@ public static partial class IconFontBuilderExtensions
     // Called by generated per-font helpers (UseMaterialDesignIconsFilled, etc.)
     internal static MauiAppBuilder UseIconFont(this MauiAppBuilder builder, string fontClass)
     {
-        var cfg = System.Array.Find(IconFontConfigs.All, x => x.ClassName == fontClass);
+        IconFontConfig? cfg = Array.Find(IconFontConfigs.All, x => x.ClassName == fontClass);
         if (cfg is not null)
         {
             builder.ConfigureFonts(fonts => fonts.AddFont(cfg.FontFile, cfg.FontAlias));
